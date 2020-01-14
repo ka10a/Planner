@@ -36,10 +36,10 @@
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="login">Вход</a>
+                    <a class="nav-link" href="{% url 'login' %}">Вход</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="add">Регистрация</a>
+                    <a class="nav-link" href="{% url 'add' %}">Регистрация</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#Modal">О нас</a>
@@ -71,7 +71,7 @@
     </div>
     <!-- кнопка начать работу -->
     <div class="next text-center">
-        <a href="login" class="butt">Начать работу</a>
+        <a href="{% url 'login' %}" class="butt">Начать работу</a>
     </div>
     <!-- модально окно о нас -->
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

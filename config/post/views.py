@@ -27,3 +27,7 @@ def index(request):
 
 def login(request):
     return HttpResponse(loader.get_template('login.html').render({}, request))
+
+
+def add(request):
+    return HttpResponse(loader.get_template('add.html').render({}, request))
