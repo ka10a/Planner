@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html>
 <head><meta charset="utf-8">
@@ -16,8 +17,8 @@
         background: linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);
     }
     </style>
-	<link href="111.css" rel="stylesheet">
-    <link href="animate.css" rel="stylesheet">
+	<link href="{% static "css/111.css" %}" rel="stylesheet">
+    <link href="{% static "animate.css" %}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 </head>
@@ -27,7 +28,6 @@
     <!-- шапка страницы -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
        <a class="navbar-brand" href="index">
-            {% load static %}
             <img src="{% static "img/calendar-icon.png" %}" width="30" height="30" alt="calendar-icon">
             Planner
         </a>
