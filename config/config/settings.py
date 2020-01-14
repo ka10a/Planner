@@ -87,17 +87,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'djangoProj',
-#         'USER': 'admin',
-#         'PASSWORD': 'pwd',
-#         'HOST': 'database-test-sem.cqjfra0jntun.us-east-2.rds.amazonaws.com',
-#         'PORT': '3306',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -141,3 +130,5 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:5500',
     'https://www.google.com'
 ]
+
+
