@@ -1,0 +1,159 @@
+{% load static %}
+<!doctype html>
+<html>
+<head><meta charset="utf-8"> <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Planner</title>
+    <style type="text/css">
+    html {
+        height: 100%;
+    }
+
+    body {
+
+        background: #547f7f;
+        background: -webkit-linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);
+        background: -moz-linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);
+        background: linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);
+    }
+    </style>
+    <link href="{% static "css/111.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+</head>
+<body>
+
+<!-- шапка страницы -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="Стартовая.html">
+            <img src="{% static "img/calendar-icon.png" %}" width="30" height="30" alt="calendar-icon">
+            Planner
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lists' %}">Cписки</a>
+
+                    <a class="nav-link" href="todolist.html">Cписки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="calendar_simple.html">Календарь</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Расписание</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#Modal">О нас</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- таблицы -->
+
+
+
+
+
+<h3>Hello <?php
+$perform=$_SESSION['name'];
+echo $perform;
+?></h3>
+
+<?php
+include_once("db.php");
+$pesult = mysql_query("SELECT UserId FROM users WHERE Login ='$perform'");
+$pow=mysql_fetch_array($pesult);
+$pew=$pow[0];
+if(isset($_POST['add'])){
+$text=strip_tags(trim($_POST['Todo']));
+$date=$_POST['Day'];
+mysql_query("INSERT INTO cal SET CalTitle='$text', Date='$date', CalUs=(SELECT UserId FROM users WHERE UserId='$pew')");
+}
+if(isset($_GET['id']))
+{
+    
+    $id=$_GET['id'];
+    mysql_query("DELETE FROM cal WHERE id='$id'");
+}
+?>
+<?php
+include_once("db.php");
+?>
+<!------- vivod ---->
+
+ <!-- таблицы -->
+    <div class="row justify-content-center">
+        <div class="col col-11 col-md-4 mt-3 mx-5">
+            <table class="table table-bordered table-hover">
+                <thead class="thead table-active">
+                    <tr>
+                        <th scope="col">  Calendar list <a data-toggle="modal" data-target="#Modal__Edit" class="icon float-right">
+                                <i class="far fa-edit"></i>
+                            </a>
+</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+$result = mysql_query("SELECT  id, CalTitle FROM cal WHERE CalUs='$pew'");
+//mysql_close();
+?>
+
+<?php
+mysql_set_charset("utf8");
+while($row=mysql_fetch_array($result))
+{ ?>
+<tr><td><?php echo $row['CalTitle']?><a href="deletecal.php?id=<?php echo $row['id']?>"><i class="far fa-trash-alt"></i></a></td></tr>
+<?php
+}
+  ?>
+                </tbody>
+            </table>
+        </div>
+
+
+  <!-- модально окно о нас -->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Planner-это web-приложение, разработанное для планирования вашей насыщенной жизни. <br> <br> Разработчики: Горчакова Яна и Колесникова Ольга. <br> Лучшие чики на весь Поликек и всю вселенную)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Ок</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   <!-- модально окно редактирования -->
+    <div class="modal fade" id="Modal__Edit" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title">Редактирование</h3>
+                </div>
+                <div class="modal-body">
+                   <form method="post" action="deletecal.php">
+<input type="text" name="Todo"/><br/>
+    <input class="form-input" type="date" id="date" name="Day"/><br/>
+  <input type="submit" name="add" value="OK" /><br/>
+ </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
