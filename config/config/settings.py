@@ -125,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = 'calendar'
 
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:5500',
