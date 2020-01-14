@@ -93,7 +93,8 @@
 
 <!-- шапка страницы -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index">
+<!--    TODO: change color -->
+    <a class="navbar-brand">
         {% load static %}
         <img src="{% static "img/calendar-icon.png" %}" width="30" height="30" alt="calendar-icon">
         Planner
@@ -108,7 +109,7 @@
                 <a class="nav-link" href="{% url 'lists' %}">Cписки</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Календарь</a>
+                <a class="nav-link" href="{% url 'calendar' %}">Календарь</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Расписание</a>
@@ -141,7 +142,7 @@
         <li class="list-inline-item"><br></li>
         <br>
 
-        <li><p class="text-left"><a href="calendar_simple.html">Today </a>
+        <li><p class="text-left"><a href="{% url 'calendar' %}">Today </a>
     </ul>
     <table class="table table-bordered">
 
