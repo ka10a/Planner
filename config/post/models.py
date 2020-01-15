@@ -21,7 +21,6 @@ class Calendar(models.Model):
 
 class ToDoItem(models.Model):
     name = models.CharField(max_length=200)
-    created = models.DateField('created')
     due_date = models.DateField('task date')
     category = models.CharField(max_length=100)
     done = models.BooleanField(default=False)

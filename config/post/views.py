@@ -76,22 +76,19 @@ def redirect_to_index(request):
 
 def lists(request):
     if request.method == 'POST':
+        print(request.POST)
+
         description = request.POST['description']
-        category = request.POST['category_select']
+        category = request.POST['category']
         due_date = request.POST['date']
-        tz = get_current_timezone()
-        due_date = tz.localize(datetime.strptime(due_date, '%Y-%d-%m'))
-
-        if category == "" or due_date == "" or due_date < timezone.now():
-            pass
-
-        todoitem = ToDoItem.objects.create(name=description, due_date=due_date,
-                                           category=category, created=timezone.now())
+        todoitem = ToDoItem.objects.create(name=description,
+                                           due_date=due_date,
+                                           category=category)
 
     todos_list = ToDoItem.objects.all()
     data = {
         "todos": list(todos_list.values(
-            "name", "done", "created", "due_date", "category"
+            "name", "done", "due_date", "category"
         )),
         "categories": [
             "household", "entertaiment", "study", "other"
