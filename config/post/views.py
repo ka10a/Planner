@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
@@ -18,14 +18,50 @@ from django.shortcuts import render
 #
 from django.utils.timezone import get_current_timezone
 
+from datetime import datetime
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.views import generic
+from django.utils.safestring import mark_safe
+
+from .models import *
+from .utils import Calendar
+
 from .models import ToDoItem
 
 
 def index(request):
     return HttpResponse(loader.get_template('index.html').render({}, request))
 
+
 def deletecal(request):
     return HttpResponse(loader.get_template('deletecal.html').render({}, request))
+
+
+class CalendarView(generic.ListView):
+    model = Event
+    template_name = 'calendar_simple.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # use today's date for the calendar
+        d = get_date(self.request.GET.get('day', None))
+
+        # Instantiate our calendar class with today's year and date
+        cal = Calendar(d.year, d.month)
+
+        # Call the formatmonth method, which returns our calendar as a table
+        html_cal = cal.formatmonth(withyear=True)
+        context['calendar'] = mark_safe(html_cal)
+        return context
+
+
+def get_date(req_day):
+    if req_day:
+        year, month = (int(x) for x in req_day.split('-'))
+        return date(year, month, day=1)
+    return datetime.today()
 
 
 def signup(request):
@@ -64,10 +100,6 @@ def hello1(request, sss):
         'number': sss,
     }
     return HttpResponse(template.render(context, request))
-
-
-# def add(request):
-#     return HttpResponse(loader.get_template('add.html').render({}, request))
 
 
 def redirect_to_index(request):

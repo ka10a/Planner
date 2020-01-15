@@ -14,6 +14,7 @@
 
     {% load static %}
     <link href="{% static "css/111.css" %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static "css/cal_styles.css" %}">
 
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -93,34 +94,37 @@
 
         <p class="list-inline-item"> <a href="{% url 'calendar' %}">Today</a>
     </ul>
-    <table class="table table-bordered">
+<!--    <table class="table table-bordered">-->
 
-        <thead>
+<!--        <thead>-->
 
-        <tr>
+<!--        <tr>-->
 
-            <th>M</th>
+<!--            <th>M</th>-->
 
-            <th>T</th>
+<!--            <th>T</th>-->
 
-            <th>W</th>
+<!--            <th>W</th>-->
 
-            <th>T</th>
+<!--            <th>T</th>-->
 
-            <th>F</th>
+<!--            <th>F</th>-->
 
-            <th>S</th>
+<!--            <th>S</th>-->
 
-            <th>S</th>
+<!--            <th>S</th>-->
 
-        </tr>
+<!--        </tr>-->
 
-        </thead>
+<!--        </thead>-->
 
-        <tbody>
+<!--        <tbody>-->
 
-        </tbody>
-    </table>
+<!--        </tbody>-->
+<!--    </table>-->
+
+    {{ calendar }}
+
 </div>
 
 <!-- модально окно о нас -->
