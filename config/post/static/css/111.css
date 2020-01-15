@@ -9,7 +9,7 @@
     margin: 0;
     text-align: center;
 
-    color: #d5e8e3;
+    color: #87cac5;
 }
 
 .title__enter {
@@ -29,7 +29,7 @@
 
 .container,
 table {
-    background: #d5e8e3;
+    background: #87b3ae;
 }
 
 .navbar {
@@ -83,7 +83,7 @@ table {
 .butt:hover {
     background: #293f50;
     box-shadow: 0 15px 20px rgba(0, 0, 74, .4);
-    color: #d5e8e3;
+    color: #87b3ae;
     transform: translateY(-7px);
 }
 
@@ -92,9 +92,65 @@ table {
 }
 
 .icon {
-    color: #000;
+    color: #010cbe;
     font-size: 15px;
-text-align: right;
-    align-items: right;
+    text-align: center;
+    align-items: center;
 }
 
+.container_calendar,
+table {
+    background: rgba(41, 63, 80, 0.3)
+}
+
+.container_calendar {
+
+    font-family: 'Montserrat', sans-serif;
+    margin: 60px auto;
+
+}
+
+.list-inline {
+
+    text-align: center;
+    margin-bottom: 30px;
+
+}
+
+.title {
+
+    font-weight: 900;
+    font-size: 40px;
+
+}
+
+th {
+
+    text-align: center;
+    width: 90px;
+    margin-right: 1%;
+}
+
+td {
+
+    height: 100px;
+
+}
+
+th:nth-of-type(6), td:nth-of-type(6) {
+
+    color: #010cbe;
+
+}
+
+th:nth-of-type(7), td:nth-of-type(7) {
+
+    color: red;
+
+}
+
+.today {
+
+    background-color: #87cac5;
+
+}

@@ -17,6 +17,9 @@ from django.shortcuts import render
 def index(request):
     return HttpResponse(loader.get_template('index.html').render({}, request))
 
+def deletecal(request):
+    return HttpResponse(loader.get_template('deletecal.html').render({}, request))
+
 
 def signup(request):
     if request.method == 'POST':

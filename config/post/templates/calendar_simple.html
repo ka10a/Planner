@@ -19,71 +19,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <style>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+
         body {
 
             background: #547f7f;
             background: -webkit-linear-gradient(135deg, #87b3ae, #648880, #293f50, #132b44);
-            {#background: -moz-linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);#}
-            {#background: linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);#}
         }
-
-        .container {
-
-            font-family: 'Montserrat', sans-serif;
-
-            margin: 60px auto;
-
-        }
-
-        .list-inline {
-
-            text-align: center;
-
-            margin-bottom: 30px;
-
-        }
-
-        .title {
-
-            font-weight: bold;
-
-            font-size: 40px;
-
-        }
-
-        th {
-
-            text-align: center;
-            width: 90px;
-            margin-right: 1%;
-        }
-
-        td {
-
-            height: 100px;
-
-        }
-
-        th:nth-of-type(6), td:nth-of-type(6) {
-
-            color: blue;
-
-        }
-
-        th:nth-of-type(7), td:nth-of-type(7) {
-
-            color: red;
-
-        }
-
-        .today {
-
-            background-color: ghostwhite;
-
-        }
-
-
     </style>
 
 </head>
@@ -93,7 +40,6 @@
 
 <!-- шапка страницы -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<!--    TODO: change color -->
     <a class="navbar-brand" href="#">
         {% load static %}
         <img src="{% static "img/calendar-icon.png" %}" width="30" height="30" alt="calendar-icon">
@@ -115,34 +61,37 @@
                 <a class="nav-link" href="{% url 'logout' %}">Log out</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#Modal">About</a>
+                <a class="nav-link" data-toggle="modal" data-target="#Modal">About us</a>
             </li>
         </ul>
     </div>
 </nav>
 
 
-<div class="container">
+<div class="container_calendar">
 
     <ul class="list-inline">
         <li>
-            <a href="deletecal.html"> <i class="far fa-trash-alt"></i></a>
-            <a data-toggle="modal" data-target="#Modal__Edit" class="icon float-right"><i class="far fa-edit"></i></a>
+            <a href="{% url 'deletecal' %}" class="btn btn-link">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+            <a data-toggle="modal" href data-target="#Modal__Edit" class="btn btn-link">
+                <i class="fas fa-edit"></i>
+            </a>
 
         </li>
     </ul>
     <ul class="list-inline">
 
-        <li class="list-inline-item"><a href="?ym=<?= $prev; ?>" class="btn btn-link">&lt; prev</a></li>
+        <li class="list-inline-item"><a href="?ym=<?= $prev; ?>" class="btn btn-link">&lt; Prev</a></li>
 
         <li class="list-inline-item"><span class="title"><?= $title; ?></span></li>
 
-        <li class="list-inline-item"><a href="?ym=<?= $next; ?>" class="btn btn-link">next &gt;</a></li>
+        <li class="list-inline-item"><a href="?ym=<?= $next; ?>" class="btn btn-link">Next &gt;</a></li>
 
         <li class="list-inline-item"><br></li>
-        <br>
 
-        <li><p class="text-left"><a href="{% url 'calendar' %}">Today </a>
+        <p class="list-inline-item"> <a href="{% url 'calendar' %}">Today</a>
     </ul>
     <table class="table table-bordered">
 
@@ -180,10 +129,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                Planner-это web-приложение, разработанное для планирования вашей насыщенной жизни. <br> <br>
+                Planner is a web application, created in order to help you to manage your life. <br> <br>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal">Ок</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Оk</button>
             </div>
         </div>
     </div>
@@ -193,14 +142,14 @@
 
 <div class="modal fade" id="Modal__Del" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content_delete">
             <div class="modal-header">
-                <h3 class="modal-title">Удаление</h3>
+                <h3 class="modal-title">Delete</h3>
             </div>
             <div class="modal-body">
                 </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -212,16 +161,19 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Редактирование</h3>
+                <h3 class="w3-text-blue-grey">Edit</h3>
             </div>
             <div class="modal-body">
                 <form method="post" action="calendar_simple.html">
-                    <input type="text" name="Todo"/><br/>
-                    <input class="form-input" type="date" id="date" name="Day"/><br/>
-                    <input type="submit" name="add" value="OK"/><br/>
+
+                    <label class="w3-text-blue-grey"> <b>Event to schedule</b> </label>
+                    <input class="w3-input w3-border w3-round w3-light-grey" name="Todo"/><br/>
+                    <input class="w3-input w3-border w3-round w3-light-grey" type="date" id="date" name="Day"/><br/>
+
+                    <input type="button" class="w3-btn w3-blue-grey w3-round" name="add" value="Ok"/>
                 </form>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-secondary w3-btn w3-blue-grey" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
