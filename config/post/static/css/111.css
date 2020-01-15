@@ -154,3 +154,45 @@ th:nth-of-type(7), td:nth-of-type(7) {
     background-color: #87cac5;
 
 }
+
+#category{
+    width:300px;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-bottom: 4%;
+
+}
+
+#category option{
+    width:300px;
+}
+
+#due{
+    margin-left: 3%;
+    margin-right: 2%;
+    display: inline-block;
+}
+
+#description{
+    width:300px;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+#date{
+    width:200px;
+    margin-left: 2%;
+    margin-bottom: 4%;
+}
+
+#del{
+    width:120px;
+    margin-left: 5%;
+    margin-bottom: 7%;
+}
+
+#add{
+    width:100px;
+    margin-left: 5%;
+    margin-bottom: 7%;
+}
