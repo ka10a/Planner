@@ -76,14 +76,9 @@ def redirect_to_index(request):
 
 def lists(request):
     if request.method == 'POST':
-        print(request.POST)
-
-        description = request.POST['description']
-        category = request.POST['category']
-        due_date = request.POST['date']
-        todoitem = ToDoItem.objects.create(name=description,
-                                           due_date=due_date,
-                                           category=category)
+        todoitem = ToDoItem.objects.create(name=request.POST['description'],
+                                           due_date=request.POST['date'],
+                                           category=request.POST['category'])
 
     todos_list = ToDoItem.objects.all()
     data = {
