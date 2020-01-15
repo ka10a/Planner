@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
-# from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -25,12 +24,13 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             # TODO: change index to the right page
-            return redirect('calendar_simple')
+            return redirect('calendar')
     else:
         form = UserCreationForm()
-        return HttpResponse(loader.get_template('login.html').render({
-                'form': form
-            }, request))
+    return HttpResponse(loader.get_template('add.html').render({
+        'form': form
+    }, request))
+
 #     c = {}
 #     c.update(csrf(request))
 #     return render(request, 'login.html', c)
@@ -47,23 +47,23 @@ def calendar(request):
     return HttpResponse(loader.get_template('calendar_simple.html').render({}, request))
 
 
-def auth(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            # Redirect to a success page.
-            # ...
-            # TODO: replace 'login.html' to right page
-            return HttpResponse(loader.get_template('login.html').render({}, request))
-        else:
-            return HttpResponse(loader.get_template('login.html').render({}, request))
-            # Return an 'invalid login' error message.
-            # ...
-    else:
-        return HttpResponse(loader.get_template('login.html').render({}, request))
+# def auth(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(request, username=username, password=password)
+#         if user is not None:
+#             login(request, user)
+#             # Redirect to a success page.
+#             # ...
+#             # TODO: replace 'login.html' to right page
+#             return HttpResponse(loader.get_template('login.html').render({}, request))
+#         else:
+#             return HttpResponse(loader.get_template('login.html').render({}, request))
+#             # Return an 'invalid login' error message.
+#             # ...
+#     else:
+#         return HttpResponse(loader.get_template('login.html').render({}, request))
 
 
 def hello(request):
@@ -83,9 +83,8 @@ def index(request):
     return HttpResponse(loader.get_template('index.html').render({}, request))
 
 
-
-def add(request):
-    return HttpResponse(loader.get_template('add.html').render({}, request))
+# def add(request):
+#     return HttpResponse(loader.get_template('add.html').render({}, request))
 
 
 def redirect_to_index(request):

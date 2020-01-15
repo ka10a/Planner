@@ -30,34 +30,34 @@
 </head>
 <body>
 <!-- шапка страницы -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html">
-        {% load static %}
-        <img src="{% static "img/calendar-icon.png" %}" width="30" height="30" alt="calendar-icon">
-        Planner
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="todolist.html">Cписки</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="calendar_simple.html">Календарь</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Расписание</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#Modal">О нас</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<!-- таблицы -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!--    TODO: change color -->
+        <a class="navbar-brand">
+            {% load static %}
+            <img src="{% static "img/calendar-icon.png" %}" width="30" height="30" alt="calendar-icon">
+            Planner
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lists' %}">Cписки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'calendar' %}">Календарь</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Расписание</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#Modal">О нас</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- таблицы -->
 
 <!-- таблицы -->
 <div class="row justify-content-center">
