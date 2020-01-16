@@ -130,19 +130,38 @@ def redirect_to_index(request):
     return redirect(index)
 
 
+def delete(request):
+    current_user = request.user
+    ToDoItem.objects.filter(user=current_user.id).delete()
+    return redirect(lists)
+
+
 def lists(request):
+    current_user = request.user
+
+    print(request)
+
     if request.method == 'POST':
         todoitem = ToDoItem.objects.create(name=request.POST['description'],
                                            due_date=request.POST['date'],
-                                           category=request.POST['category'])
+                                           category=request.POST['category'],
+                                           user=current_user.id)
 
-    todos_list = ToDoItem.objects.all()
     data = {
-        "todos": list(todos_list.values(
-            "name", "done", "due_date", "category"
-        )),
         "categories": [
             "household", "entertaiment", "study", "other"
         ]
     }
+
+    todos_list = ToDoItem.objects.filter(user=current_user.id)
+
+    if len(todos_list):
+        data = {
+            "todos": list(todos_list.values(
+                "name", "done", "due_date", "category"
+            )),
+            "categories": [
+                "household", "entertaiment", "study", "other"
+            ]
+        }
     return HttpResponse(loader.get_template('todolist.html').render(data, request))

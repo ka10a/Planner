@@ -30,6 +30,7 @@ class ToDoItem(models.Model):
     due_date = models.DateField('task date')
     category = models.CharField(max_length=100)
     done = models.BooleanField(default=False)
+    user = models.BigIntegerField(default=0)
 
     # @classmethod
     # def create(cls, description, date, categ):
