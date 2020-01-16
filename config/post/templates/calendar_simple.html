@@ -69,13 +69,10 @@
 </nav>
 
 
-<div class="container_calendar">
+<div class="calendar">
 
     <ul class="list-inline">
         <li>
-            <a href="{% url 'deletecal' %}" class="btn btn-link">
-                <i class="fas fa-trash-alt"></i>
-            </a>
             <a data-toggle="modal" href data-target="#Modal__Edit" class="btn btn-link">
                 <i class="fas fa-edit"></i>
             </a>
@@ -84,7 +81,7 @@
     </ul>
     <div class="clearfix">
         <a class="btn btn-info left" href="{% url 'calendar' %}"> Previous Month </a>
-        <a class="btn btn-info right" href="{% url 'calendar' %"> Next Month </a>
+        <a class="btn btn-info right" href="{% url 'calendar' %}"> Next Month </a>
     </div>
 <!--    <ul class="list-inline">-->
 
