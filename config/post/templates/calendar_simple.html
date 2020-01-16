@@ -82,18 +82,22 @@
 
         </li>
     </ul>
-    <ul class="list-inline">
+    <div class="clearfix">
+        <a class="btn btn-info left" href="{% url 'calendar' %}"> Previous Month </a>
+        <a class="btn btn-info right" href="{% url 'calendar' %"> Next Month </a>
+    </div>
+<!--    <ul class="list-inline">-->
 
-        <li class="list-inline-item"><a href="?ym=<?= $prev; ?>" class="btn btn-link">&lt; Prev</a></li>
+<!--        <li class="list-inline-item"><a href="?ym=<?= $prev; ?>" class="btn btn-link">&lt; Prev</a></li>-->
 
-        <li class="list-inline-item"><span class="title"><?= $title; ?></span></li>
+<!--        <li class="list-inline-item"><span class="title"><?= $title; ?></span></li>-->
 
-        <li class="list-inline-item"><a href="?ym=<?= $next; ?>" class="btn btn-link">Next &gt;</a></li>
+<!--        <li class="list-inline-item"><a href="?ym=<?= $next; ?>" class="btn btn-link">Next &gt;</a></li>-->
 
-        <li class="list-inline-item"><br></li>
+<!--        <li class="list-inline-item"><br></li>-->
 
-        <p class="list-inline-item"> <a href="{% url 'calendar' %}">Today</a>
-    </ul>
+<!--        <p class="list-inline-item"> <a href="{% url 'calendar' %}">Today</a>-->
+<!--    </ul>-->
 <!--    <table class="table table-bordered">-->
 
 <!--        <thead>-->
@@ -160,7 +164,6 @@
 </div>
 
 <!-- модально окно редактирования -->
-
 <div class="modal fade" id="Modal__Edit" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -168,7 +171,8 @@
                 <h3 class="w3-text-blue-grey"><b>Edit</b></h3>
             </div>
             <div class="modal-body">
-                <form method="post" action="calendar_simple.html">
+                <form method="post">
+                    {% csrf_token %}
 
                     <label class="w3-text-blue-grey"> <b>Event to schedule</b> </label>
                     <input class="w3-input w3-border w3-round w3-light-grey" name="Todo"/><br/>
@@ -176,6 +180,13 @@
 
                     <button type="submit" class="btn btn-secondary w3-btn w3-round w3-blue-grey" id="ok" name="ok">Ok</button>
                 </form>
+<!--                <form method="post">-->
+<!--                  {% csrf_token %}-->
+<!--                  <table class="form form-table">-->
+<!--                      {{ form }}-->
+<!--                    <tr><td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td></tr>-->
+<!--                  </table>-->
+<!--                </form>-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary w3-btn w3-blue-grey" data-dismiss="modal">Cancel</button>
                 </div>

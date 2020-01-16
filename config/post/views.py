@@ -1,9 +1,10 @@
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.template import loader
 from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 from django.contrib.auth.models import User
@@ -24,10 +25,12 @@ from django.http import HttpResponse
 from django.views import generic
 from django.utils.safestring import mark_safe
 
+from .forms import EventForm
 from .models import *
 from .utils import Calendar
 
 from .models import ToDoItem
+import calendar
 
 
 def index(request):
@@ -44,17 +47,28 @@ class CalendarView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # use today's date for the calendar
-        d = get_date(self.request.GET.get('day', None))
-
-        # Instantiate our calendar class with today's year and date
+        d = get_date(self.request.GET.get('month', None))
         cal = Calendar(d.year, d.month)
-
-        # Call the formatmonth method, which returns our calendar as a table
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
+        # context['prev_month'] = prev_month(d)
+        # context['next_month'] = next_month(d)
         return context
+
+
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_mon = first - timedelta(days=1)
+    month = 'month=' + str(prev_mon.year) + '-' + str(prev_mon.month)
+    return month
+
+
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_mon = last + timedelta(days=1)
+    month = 'month=' + str(next_mon.year) + '-' + str(next_mon.month)
+    return month
 
 
 def get_date(req_day):
@@ -85,8 +99,18 @@ def login(request):
     }, request))
 
 
-def calendar(request):
-    return HttpResponse(loader.get_template('calendar_simple.html').render({}, request))
+def calendar_view(request, event_id=None):
+    instance = Event()
+    if event_id:
+        instance = get_object_or_404(Event, pk=event_id)
+    else:
+        instance = Event()
+
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        return HttpResponse(loader.get_template('calendar_simple.html').render({}, request))
+    return HttpResponse(loader.get_template('calendar_simple.html').render({'form': form}, request))
 
 
 def hello(request):
