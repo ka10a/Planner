@@ -61,22 +61,24 @@
 
 <!-- таблицы -->
 <div class="row justify-content-center">
-    <div class="col col-11 col-md-4 mt-3 mx-5">
+    <div class="col col-11 col-xl mt-3 mx-5">
         <table class="table table-bordered table-hover">
             <thead class="thead table-active">
             <tr>
-                <th scope="col"> To do list
+                <th scope="col">
+                    <label class="w3-text-blue-grey" id="lab"> <b>To Do List</b> </label>
                     <a data-toggle="modal" data-target="#Modal__Edit" href class="btn btn-link float-right">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <ul class="taskList">
+                    <ul class="taskList w3-text-light-grey" style="list-style-type:none;">
                         {% for todo in todos %} <!-- django template lang - for loop -->
-                            <li class="taskItem">
+                            <li class="taskItem" id="point">
                                 <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}"
                                        value="{{ todo.id }}">
-                                <label for="{{ todo.id }}"><span class="complete-">{{ todo.name }}</span></label>
-                                <span class="category-{{ todo.category }}">{{ todo.category }}</span>
-                                <strong class="taskDate"><i class="fa fa-calendar"></i>{{ todo.due_date }}</strong>
+                                <label for="{{ todo.id }}"><span class="complete- w3-text-light-grey">{{ todo.name }}</span></label>
+                                <span id="cat" class="category- w3-text-blue-grey {{ todo.category }}">{{ todo.category }}</span>
+                                <i class="fa fa-calendar w3-text-blue-grey" id="icon-cal"></i>
+                                <strong id="dat-list" class="taskDate">{{ todo.due_date }}</strong>
                             </li>
                         {% endfor %}
                     </ul>
