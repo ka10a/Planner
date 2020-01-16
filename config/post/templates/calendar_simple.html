@@ -135,17 +135,10 @@
                     <input class="w3-input w3-border w3-round w3-light-grey" name="Todo"/><br/>
                     <input class="w3-input w3-border w3-round w3-light-grey" type="date" id="Day" name="Day"/><br/>
 
-                    <button type="submit" class="btn btn-secondary w3-btn w3-round w3-blue-grey" id="ok" name="ok">Ok</button>
+                    <a href="{% url 'calendar' %}" type="submit" class="btn btn-secondary w3-btn w3-round w3-blue-grey" id="ok" name="ok">Ok</a>
                 </form>
-<!--                <form method="post">-->
-<!--                  {% csrf_token %}-->
-<!--                  <table class="form form-table">-->
-<!--                      {{ form }}-->
-<!--                    <tr><td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button></td></tr>-->
-<!--                  </table>-->
-<!--                </form>-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary w3-btn w3-blue-grey" data-dismiss="modal">Cancel</button>
+                    <a type="button" class="btn btn-secondary w3-btn w3-blue-grey" data-dismiss="modal">Cancel</a>
                 </div>
             </div>
         </div>

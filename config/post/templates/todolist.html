@@ -76,7 +76,7 @@
                     </a>
 
                     <ul class="taskList w3-text-light-grey" style="list-style-type:none;">
-                        {% for todo in todos %} <!-- django template lang - for loop -->
+                        {% for todo in todos %}
                             <li class="taskItem" id="point">
                                 <input type="checkbox" class="taskCheckbox" name="checkedbox" id="{{ todo.id }}"
                                        value="{{ todo.id }}">
@@ -115,7 +115,7 @@
 
         <div class="modal-content">
             <form action="" method="post">
-                {% csrf_token %} <!-- csrf token for basic security -->
+                {% csrf_token %}
                 <div class="modal-header">
                     <h3 class="w3-text-blue-grey"><b>Event</b></h3>
                 </div>

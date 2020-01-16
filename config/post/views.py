@@ -37,10 +37,6 @@ def index(request):
     return HttpResponse(loader.get_template('index.html').render({}, request))
 
 
-def deletecal(request):
-    return HttpResponse(loader.get_template('deletecal.html').render({}, request))
-
-
 class CalendarView(generic.ListView):
     model = Event
     template_name = 'calendar_simple.html'
@@ -51,8 +47,6 @@ class CalendarView(generic.ListView):
         cal = Calendar(d.year, d.month)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
-        # context['prev_month'] = prev_month(d)
-        # context['next_month'] = next_month(d)
         return context
 
 
@@ -100,30 +94,7 @@ def login(request):
 
 
 def calendar_view(request, event_id=None):
-    instance = Event()
-    if event_id:
-        instance = get_object_or_404(Event, pk=event_id)
-    else:
-        instance = Event()
-
-    form = EventForm(request.POST or None, instance=instance)
-    if request.POST and form.is_valid():
-        form.save()
-        return HttpResponse(loader.get_template('calendar_simple.html').render({}, request))
-    return HttpResponse(loader.get_template('calendar_simple.html').render({'form': form}, request))
-
-
-def hello(request):
-    template = loader.get_template('hello.html')
-    return HttpResponse(template.render({'ty': 'pidor'}, request))
-
-
-def hello1(request, sss):
-    template = loader.get_template('hello1.html')
-    context = {
-        'number': sss,
-    }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(loader.get_template('calendar_simple.html').render({}, request))
 
 
 def redirect_to_index(request):
