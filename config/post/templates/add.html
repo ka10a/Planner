@@ -7,17 +7,14 @@
 
     <title>Planner</title>
     <style type="text/css">
-    html {
-        height: 100%;
-    }
+        html {
+            height: 100%;
+        }
 
-    body {
-
-        background: #547f7f;
-        background: -webkit-linear-gradient(135deg, #87b3ae, #648880, #293f50, #132b44);
-        {#background: -moz-linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);#}
-        {#background: linear-gradient(135deg, #d5e8e3, #648880, #293f50, #132b44);#}
-    }
+        body {
+            background: #547f7f;
+            background: -webkit-linear-gradient(135deg, #87b3ae, #648880, #293f50, #132b44);
+        }
     </style>
     <link href="../static/css/111.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -54,44 +51,9 @@
         <div class="col"></div>
         <div class="col col-md-4 col-sm-8 col-10">
             <div class="container rounded">
-<!--                <form method="post" action="add.php">-->
-<!--                    <div class="title__registr">-->
-<!--                        Регистрация-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="Password">Имя</label>-->
-<!--                        <input type="text" class="form-control" placeholder="Имя" name="User_Name" autocomplete="on" />-->
-<!--                    </div><br>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="InputEmail">Email</label>-->
-<!--                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="Email"/>-->
-<!--                    </div>-->
-<!--                    <br>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="Password">Логин</label>-->
-<!--                        <input type="text" class="form-control" placeholder="Логин" name="Login"  autocomplete="on"/>-->
-<!--                    </div>-->
-<!--                    <br>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="Password">Пароль</label>-->
-<!--                        <input type="text" class="form-control" placeholder="Пароль" name="Password" autocomplete="on" />-->
-<!--                    </div>-->
-<!--                    <br>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="inputDate">Введите дату:</label>-->
-<!--                            <input type="date" class="form-control" name="Birthday" value="<?php echo date('Y-m-d');?>"/>-->
-<!--                        </div>-->
-<!--                    <br>-->
-<!--                    <input type="submit" class="btn btn-info" name="add" value="OK"/>-->
-<!--                </form>-->
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-<!--                    <label for="username">Login: </label>-->
-<!--                    <input id="username" type="text" name="username" value="{{ username }}">-->
-<!--                    <label for="password">Password: </label>-->
-<!--                    <input id="password" type="text" name="password" value="{{ password }}">-->
-<!--                    <input type="submit" value="OK">-->
                     <button type="submit">Sign up</button>
                 </form>
                 <br><br>
@@ -99,21 +61,29 @@
         </div>
         <div class="col"></div>
     </div>
+
+    <!-- модально окно о нас -->
     <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    Planner-это web-приложение, разработанное для планирования вашей насыщенной жизни. <br>  <br>
+                    Planner is a web application, created in order to help you to manage your life. <br> <br>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Ок</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Оk</button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </body>
 </html>
 
