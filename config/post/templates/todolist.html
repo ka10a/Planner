@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Planner</title>
     <style type="text/css">
-        html {
+        html, body {
             height: 100%;
         }
 
@@ -70,6 +70,11 @@
                     <a data-toggle="modal" data-target="#Modal__Edit" href class="btn btn-link float-right">
                         <i class="fas fa-edit"></i>
                     </a>
+
+                    <a href class="btn btn-link float-right">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+
                     <ul class="taskList w3-text-light-grey" style="list-style-type:none;">
                         {% for todo in todos %} <!-- django template lang - for loop -->
                             <li class="taskItem" id="point">

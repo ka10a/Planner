@@ -98,17 +98,17 @@ table {
     align-items: center;
 }
 
-.container_calendar,
+.row justify-content-center,
 table {
-    background: rgba(41, 63, 80, 0.8);
+    background: rgba(1, 72, 78, 0.3);
     width: 100px;
 }
 
-.container_calendar {
-    font-family: 'Montserrat', sans-serif;
-    margin: 100px auto;
+/*.container_calendar {*/
+/*    font-family: 'Montserrat', sans-serif;*/
+/*    margin: 100px auto;*/
 
-}
+/*}*/
 
 .list-inline {
     text-align: center;
@@ -216,10 +216,16 @@ th:nth-of-type(7), td:nth-of-type(7) {
 
 }
 
-#dat-list{
-
-}
-
 #lab {
     font-size: 20px;
+}
+
+#title{
+    font-size: 50px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#tod{
+
 }
